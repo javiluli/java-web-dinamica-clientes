@@ -5,18 +5,17 @@
 <%@ page import="servicios.ServiciosCliente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"	pageEncoding="ISO-8859-1"%>
 
+<%
+ServiciosCliente sCliente = new ServiciosCliente();
+List<Cliente> lClientes = sCliente.recuperarTodosClientesCompletos();
+%>
+		
 <!DOCTYPE html>
 <html lang="es">
   <%@ include file="/componentes/Head.html"%>
   
 	<body>
 	
-		<%
-		List<Cliente> lClientes = new ArrayList<Cliente>();
-		ServiciosCliente sCliente = new ServiciosCliente();
-	  lClientes = sCliente.recuperarTodosClientesCompletos();
-		%>
-		
 		<%@ include file="/componentes/menu.html"%>
 		
 		<div class="container">		

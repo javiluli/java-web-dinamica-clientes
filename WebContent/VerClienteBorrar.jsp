@@ -1,17 +1,18 @@
 <%@ page import="domain.Cliente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
+		
+<%
+Cliente cliente = (Cliente) session.getAttribute("cliente");
+%>
+
 <!DOCTYPE html>
 <html lang="es">
  	<%@ include file="/componentes/Head.html"%>
 
 	<body>	
 		<%@ include file="/componentes/menu.html"%>
-		
-		<%
-		Cliente cliente = (Cliente) session.getAttribute("cliente");
-		%>
-	
+
 		<div class="container">
 			<div class="row mx-auto">
 				<div class="my-3 col-md-8 mx-auto">

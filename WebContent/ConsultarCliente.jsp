@@ -5,17 +5,18 @@
 <%@ page import="javax.servlet.http.HttpServletResponse"%>
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<%		
+if(request.getParameter("num") != null) {
+	session.setAttribute("num", request.getParameter("num"));   
+} 
+%>
+
 <!DOCTYPE html>
 <html lang="es">
   <%@ include file="/componentes/Head.html"%>
   
 	<body>
-
-		<%		
-		if(request.getParameter("num") != null) {
-			session.setAttribute("num", request.getParameter("num"));   
-		} 
-		%>
 		
 		<%@ include file="/componentes/menu.html"%>
 		
@@ -60,6 +61,7 @@
 					    <button type="submit" class="btn btn-primary mb-3">Buscar cliente</button>
 					  </div>
 					</form>
+					
 				</div>
 			</div>
 		</div>

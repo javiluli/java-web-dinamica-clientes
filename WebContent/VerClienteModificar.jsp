@@ -10,38 +10,45 @@
 <%@ page import="servicios.ServicioTarifa"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
+<%
+/* 
+ * Variables
+ */
+
+// Obj Cliente obtenido de la session
+Cliente cliente = (Cliente) session.getAttribute("cliente") ;
+
+/* 
+ * Uso de servicios para obtener informacion de la BD 
+ */
+ 
+//Recuperar IVAS de la BD
+ServicioIva sIva = new ServicioIva();
+List<Iva> lIvas = sIva.recuperarTodosIvas();
+		
+//Recuperar Tarifas 
+ServicioTarifa sTarifa = new ServicioTarifa();
+List<Tarifa> lTarifa = sTarifa.RecuperarTodasTarifas();
+		
+//Recuperar Formas de pago de la BD
+ServicioFormaPago sFormaPago = new ServicioFormaPago();
+List<FormaPago> lFormaPago = sFormaPago.recuperarTodosFormasPago();
+%>
+		
+
 <!DOCTYPE html>
 <html lang="es">
 	<%@ include file="/componentes/Head.html"%>
 
 	<body>
 
-		<%
-		
-		Cliente cliente = (Cliente) session.getAttribute("cliente") ;
-	    
-	  // Recuperar IVAS de la BD
-	  List<Iva> lIvas = new ArrayList<Iva>();
-		ServicioIva sIva = new ServicioIva();
-		lIvas = sIva.recuperarTodosIvas();
-			
-		// Recuperar Tarifas de la BD
-		List<Tarifa> lTarifa = new ArrayList<Tarifa>();
-		ServicioTarifa sTarifa = new ServicioTarifa();
-		lTarifa = sTarifa.RecuperarTodasTarifas();
-			
-		// Recuperar Formas de pago de la BD
-		List<FormaPago> lFormaPago = new ArrayList<FormaPago>();
-		ServicioFormaPago sFormaPago = new ServicioFormaPago();
-		lFormaPago = sFormaPago.recuperarTodosFormasPago();
-		%>
-		
 		<%@ include file="/componentes/menu.html"%>
 		
 		<div class="container">
 			<div class="row mx-auto">
 				<div class="my-3 col-md-8 mx-auto">
 					<h1>Modificar un cliente</h1>
+					
 					<%
 					// Si todo es correcto mostrara un mensaje OK
 				  String message = (String) request.getAttribute("msg-success");
