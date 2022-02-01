@@ -9,39 +9,51 @@
 <%@ page import="servicios.ServicioTarifa"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"	pageEncoding="ISO-8859-1"%>
 
+<%
+
+/* 
+ * Variables
+ */
+ 
+ // mensage para el usuario en caso de error o si esta todo correcto
+ String message = null;
+
+/* 
+ * Recuperacion de los datos por medio del 'request'
+ */
+String cod_cli 			= request.getParameter("cod_cli") 			== null ? "" 	: request.getParameter("cod_cli");
+String razon_social = request.getParameter("razon_social") 	== null ? "" 	: request.getParameter("razon_social");
+String telf 				= request.getParameter("telf") 					== null ? "" 	: request.getParameter("telf");
+String direccion 		= request.getParameter("direccion") 		== null ? "" 	: request.getParameter("direccion");
+String oferta 			= request.getParameter("oferta") 				== null ? "N" : request.getParameter("oferta");
+String alb_fact 		= request.getParameter("alb_fact") 			== null ? "N" : request.getParameter("alb_fact");
+String ivas 				= request.getParameter("ivas") 					== null ? "" 	: request.getParameter("ivas");
+String tarifas 			= request.getParameter("tarifas") 			== null ? "" 	: request.getParameter("tarifas");
+String formasPago 	= request.getParameter("formasPago") 		== null ? "" 	: request.getParameter("formasPago");
+
+/* 
+ * Uso de servicios para obtener informacion de la BD 
+ */
+ 
+// Recuperar IVAS de la BD
+ServicioIva sIva = new ServicioIva();
+List<Iva> lIvas = sIva.recuperarTodosIvas();
+			
+// Recuperar Tarifas 
+ServicioTarifa sTarifa = new ServicioTarifa();
+List<Tarifa> lTarifa = sTarifa.RecuperarTodasTarifas();
+			
+// Recuperar Formas de pago de la BD
+ServicioFormaPago sFormaPago = new ServicioFormaPago();
+List<FormaPago> lFormaPago = sFormaPago.recuperarTodosFormasPago();
+
+%>
+
 <!DOCTYPE html>
 <html lang="es">
   <%@ include file="/componentes/Head.html"%>
   
 	<body>
-
-		<%
-	  String cod_cli 			= request.getParameter("cod_cli") 			== null ? "" 	: request.getParameter("cod_cli");
-	  String razon_social = request.getParameter("razon_social") 	== null ? "" 	: request.getParameter("razon_social");
-	  String telf 				= request.getParameter("telf") 					== null ? "" 	: request.getParameter("telf");
-	  String direccion 		= request.getParameter("direccion") 		== null ? "" 	: request.getParameter("direccion");
-	  String oferta 			= request.getParameter("oferta") 				== null ? "N" : request.getParameter("oferta");
-	  String alb_fact 		= request.getParameter("alb_fact") 			== null ? "N" : request.getParameter("alb_fact");
-	  String ivas 				= request.getParameter("ivas") 					== null ? "" 	: request.getParameter("ivas");
-	  String tarifas 			= request.getParameter("tarifas") 			== null ? "" 	: request.getParameter("tarifas");
-	  String formasPago 	= request.getParameter("formasPago") 		== null ? "" 	: request.getParameter("formasPago");
-	    
-	  // Recuperar IVAS de la BD
-	  List<Iva> lIvas = new ArrayList<Iva>();
-		ServicioIva sIva = new ServicioIva();
-		lIvas = sIva.recuperarTodosIvas();
-			
-		// Recuperar Tarifas de la BD
-		List<Tarifa> lTarifa = new ArrayList<Tarifa>();
-		ServicioTarifa sTarifa = new ServicioTarifa();
-		lTarifa = sTarifa.RecuperarTodasTarifas();
-			
-		// Recuperar Formas de pago de la BD
-		List<FormaPago> lFormaPago = new ArrayList<FormaPago>();
-		ServicioFormaPago sFormaPago = new ServicioFormaPago();
-		lFormaPago = sFormaPago.recuperarTodosFormasPago();
-		%>
-		
 		<%@ include file="/componentes/menu.html"%>
 		
 		<div class="container">
@@ -50,7 +62,7 @@
 				<h1>Insertar un cliente</h1>
 					<%
 					// Si todo es correcto mostrara un mensaje OK
-				  String message = (String) request.getAttribute("msg-success");
+				  message = (String) request.getAttribute("msg-success");
 					if (message != null) { %>
 				  	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
 							<<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -149,9 +161,9 @@
 				        <%
 								for (Iva iva : lIvas) {
 									if(iva.getCod_iva().equals(ivas)){ 
-									  out.print("<option value='" + iva.getCod_iva() + "' selected>" + iva.getTipo_iva() + "</option>");
+									  out.print("<option value='" + iva.getCod_iva() + "' selected>" + iva.getTipo_iva() + " % </option>");
 									} else {
-										out.print("<option value='" + iva.getCod_iva() + "' >" + iva.getTipo_iva() + "</option>");   
+										out.print("<option value='" + iva.getCod_iva() + "' >" + iva.getTipo_iva() + " % </option>");   
 									}
 								} 
 								%>    

@@ -54,10 +54,23 @@ public class DBQuery {
       + "                                                                cod_tarifa = ?,"
       + "                                                                forma_pago = ? WHERE cod_cli = ?";
 
-  private static final String ModificarClienteConcurrente = "UPDATE clientes " + " set RAZON_SOCIAL=?," + " TELF=?,"
-      + " DIRECCION =?," + " OFERTA =?," + " ALB_FACT =?," + " COD_IVA =?," + " COD_TARIFA =?, " + " FORMA_PAGO =? "
-      + " where  cod_cli= ? and " + " RAZON_SOCIAL=? and " + " nvl(TELF,'null') =? and " + " DIRECCION =? and "
-      + " OFERTA =? and " + " ALB_FACT =? and " + " COD_IVA =? and " + " COD_TARIFA =? and " + " FORMA_PAGO =? ";
+  private static final String ModificarClienteConcurrente = "UPDATE clientes SET razon_social = ?,"
+      + "                                                                        telf = ?,"
+      + "                                                                        direccion = ?,"
+      + "                                                                        oferta = ?,"
+      + "                                                                        alb_fact = ?,"
+      + "                                                                        cod_iva = ?,"
+      + "                                                                        cod_tarifa = ?, "
+      + "                                                                        forma_pago = ? "
+      + "                                                                    WHERE cod_cli= ? AND "
+      + "                                                                        razon_social = ? AND "
+      + "                                                                        NVL(telf,'null') = ? AND "
+      + "                                                                        direccion = ? AND "
+      + "                                                                        oferta = ? AND "
+      + "                                                                        alb_fact =?  AND "
+      + "                                                                        cod_iva = ? AND "
+      + "                                                                        cod_tarifa = ? AND "
+      + "                                                                        forma_pago = ? ";
   private static final String DELETE_CLIENTE              = "DELETE clientes WHERE cod_cli = ?";
 
   // Get Query IVA
