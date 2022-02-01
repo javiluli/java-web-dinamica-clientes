@@ -96,7 +96,8 @@
 						<!-- telf -->		
 						<div class="col-md-6">
 							<label for="telf" class="form-label"> Telefono </label>
-					    <input type="text" class="form-control" id="telf" name="telf" value="<%= request.getParameter("telf") != null ? request.getParameter("telf") : cliente.getTelf() %>" />
+					    <input type="text" class="form-control" id="telf" name="telf" value="<%= request.getParameter("telf") != null ? request.getParameter("telf")
+					      																																																						: cliente.getTelf() == null ? "" : cliente.getTelf() %>" />
 					  </div>
 							
 						<!-- direccion -->		
