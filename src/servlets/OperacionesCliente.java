@@ -39,7 +39,7 @@ public class OperacionesCliente extends HttpServlet {
 
     // si el atributo de la sesion no existe o es null se le agrega un valor por
     // defecto
-    String num = request.getParameter("num") != null ? (String) request.getParameter("num") : "1";
+    String num = session.getAttribute("num") != null ? (String) session.getAttribute("num") : "1";
     String cod_cli = request.getParameter("cod_cli");
 
     String nextPage = null;
@@ -52,7 +52,7 @@ public class OperacionesCliente extends HttpServlet {
         request.setAttribute("msg-error", "El cliente no existe");
         nextPage = "/ConsultarCliente.jsp";
 
-      } else {        
+      } else {
         session.setAttribute("cliente", cliente);
 
         if (Integer.parseInt(num) == 1) {
