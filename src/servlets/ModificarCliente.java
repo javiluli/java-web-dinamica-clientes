@@ -81,7 +81,7 @@ public class ModificarCliente extends HttpServlet {
       }
     }
 
-    getServletContext().getRequestDispatcher("/VerClienteModificar.jsp").forward(request, response);
+    getServletContext().getRequestDispatcher("/pages/VerClienteModificar.jsp").forward(request, response);
 
   }
 

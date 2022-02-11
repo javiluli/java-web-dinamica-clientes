@@ -25,22 +25,14 @@ public class OperacionesCliente extends HttpServlet {
    *      response)
    */
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    doPost(request, response);
-  }
-
-  /**
-   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-   *      response)
-   */
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     ServiciosCliente sCliente = null;
     Cliente cliente = null;
     HttpSession session = request.getSession();
 
     // si el atributo de la sesion no existe o es null se le agrega un valor por
     // defecto
-    String num = session.getAttribute("num") != null ? (String) session.getAttribute("num") : "1";
-    String cod_cli = request.getParameter("cod_cli");
+    String num = session.getAttribute("num") == null ? "3" : (String) session.getAttribute("num");
+    String cod_cli = request.getParameter("cod_cli").trim();
 
     String nextPage = null;
 
@@ -50,17 +42,24 @@ public class OperacionesCliente extends HttpServlet {
 
       if (cliente == null) {
         request.setAttribute("msg-error", "El cliente no existe");
-        nextPage = "/ConsultarCliente.jsp";
+
+        if (Integer.parseInt(num) == 1) {
+          nextPage = "/consultar";
+        } else if (Integer.parseInt(num) == 2) {
+          nextPage = "/borrar";
+        } else if (Integer.parseInt(num) == 3) {
+          nextPage = "/modificar";
+        }
 
       } else {
         session.setAttribute("cliente", cliente);
 
         if (Integer.parseInt(num) == 1) {
-          nextPage = "/VerClienteConsultar.jsp";
+          nextPage = "/pages/VerClienteConsultar.jsp";
         } else if (Integer.parseInt(num) == 2) {
-          nextPage = "/VerClienteBorrar.jsp";
+          nextPage = "/pages/VerClienteBorrar.jsp";
         } else if (Integer.parseInt(num) == 3) {
-          nextPage = "/VerClienteModificar.jsp";
+          nextPage = "/pages/VerClienteModificar.jsp";
         }
       }
 
@@ -68,11 +67,18 @@ public class OperacionesCliente extends HttpServlet {
       e.printStackTrace();
       // Error interno para el usuario
       request.setAttribute("msg-error", "Error interno");
-      nextPage = "/ConsultarCliente.jsp";
+      nextPage = "/pages/ConsultarCliente.jsp";
     }
 
     getServletContext().getRequestDispatcher(nextPage).forward(request, response);
 
+  }
+
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+   *      response)
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   }
 
 }

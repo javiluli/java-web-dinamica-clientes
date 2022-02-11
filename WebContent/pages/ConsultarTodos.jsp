@@ -6,6 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"	pageEncoding="ISO-8859-1"%>
 
 <%
+// siempre que venga aqui el usuario se cambiara el atributo 'num' de la sesion, evitando redirecciones erroneas
+session.setAttribute("num", "3");
+
 ServiciosCliente sCliente = new ServiciosCliente();
 List<Cliente> lClientes = sCliente.recuperarTodosClientesCompletos();
 %>
@@ -38,11 +41,11 @@ List<Cliente> lClientes = sCliente.recuperarTodosClientesCompletos();
 					for (Cliente cliente : lClientes) { %>
 						<tr>
 							<td> <%= cliente.getCod_cli() %> </td>
-							<td> <a href="OperacionesCliente?num=1&cod_cli=<%= cliente.getCod_cli() %>"> <%= cliente.getRazon_social() %> </a> </td>
+							<td> <a href="OperacionesCliente?cod_cli=<%= cliente.getCod_cli() %>"> <%= cliente.getRazon_social() %> </a> </td>
 							<td> <%= cliente.getTelf() != null ? cliente.getTelf() : "-" %> </td>
 							<td> <%= cliente.getDireccion() %> </td>
-							<td> <%= cliente.getOferta().equals("S") ? "Si" : "No" %> </td>
-							<td> <%= cliente.getAlb_fact().equals("S")? "Si" : "No" %> </td>
+							<td> <%= cliente.getOferta().equals("S") ? "&#10004;&#65039;" : "&#10060;" %> </td>
+							<td> <%= cliente.getAlb_fact().equals("S")? "&#10004;&#65039;" : "&#10060;" %> </td>
 							<td class="text-end"> <%= cliente.getIva().getTipo_iva() %>%</td>
 							<td> <%= cliente.getTarifa().getDescripcion().replace("_", " ") %> </td>
 							<td> <%= cliente.getFormaPago().getNumero_vtos() %> vencimiento(s) a <%= cliente.getFormaPago().getDias() %> dias </td>
