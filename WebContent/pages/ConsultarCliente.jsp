@@ -6,10 +6,10 @@
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-<%		
-if(request.getParameter("num") != null) {
-	session.setAttribute("num", request.getParameter("num"));   
-} 
+<%
+// Ver el fichero web.xml
+String num = getServletConfig().getInitParameter("num");
+session.setAttribute("num", num);
 %>
 
 <!DOCTYPE html>
@@ -24,6 +24,7 @@ if(request.getParameter("num") != null) {
 			<div class="row mx-auto">
 				<div class="my-3 col-md-8 mx-auto">
 					<%	
+					
 					if (Integer.parseInt((String) session.getAttribute("num")) == 1) {
 						out.print("<h1>Consultar cliente</h1>");
 					} else if (Integer.parseInt((String) session.getAttribute("num")) == 2) {
@@ -32,9 +33,8 @@ if(request.getParameter("num") != null) {
 						out.print("<h1>Modificar cliente</h1>");
 					}
 		  
-					// En caso de que haya un error
+					// En caso de que haya un error con su mensaje
 					String message = (String) request.getAttribute("msg-error");
-					
 				  if (message != null) { %>
 					  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">	  
 						  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -52,7 +52,7 @@ if(request.getParameter("num") != null) {
 				  }
 				  %>
 					
-					<form class="row g-3" action="OperacionesCliente" method="GET">
+					<form class="row g-3" action="OperacionesCliente" method="get">
 						<div class="col-auto">
 					    <label for="cod_cli" class="visually-hidden">Codigo del cliente</label>
 					    <input type="text" class="form-control" id="cod_cli" name="cod_cli">

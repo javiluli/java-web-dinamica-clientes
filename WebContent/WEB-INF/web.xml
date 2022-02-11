@@ -9,4 +9,76 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+   <!-- Mapeado para InsertarCliente.jsp -->
+	<servlet>
+		<servlet-name>InsertarCliente</servlet-name>
+		<jsp-file>/pages/InsertarCliente.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>InsertarCliente</servlet-name>
+		<url-pattern>/insertar</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- Mapeado para ConsultarCliente.jsp?num=1 -->
+	<servlet>
+		<servlet-name>ConsultarCliente_consultar</servlet-name>
+		<jsp-file>/pages/ConsultarCliente.jsp</jsp-file>
+		<init-param>
+				<param-name>num</param-name>
+        <param-value>1</param-value>
+    </init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ConsultarCliente_consultar</servlet-name>
+		<url-pattern>/consultar</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Mapeado para ConsultarCliente.jsp?num=2 -->
+	<servlet>
+		<servlet-name>ConsultarCliente_borrar</servlet-name>
+		<jsp-file>/pages/ConsultarCliente.jsp</jsp-file>
+		<init-param>
+				<param-name>num</param-name>
+        <param-value>2</param-value>
+    </init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ConsultarCliente_borrar</servlet-name>
+		<url-pattern>/borrar</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Mapeado para ConsultarCliente.jsp?num=3 -->
+	<servlet>
+		<servlet-name>ConsultarCliente_modificar</servlet-name>
+		<jsp-file>/pages/ConsultarCliente.jsp</jsp-file>
+		<init-param>
+				<param-name>num</param-name>
+        <param-value>3</param-value>
+    </init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ConsultarCliente_modificar</servlet-name>
+		<url-pattern>/modificar</url-pattern>
+	</servlet-mapping>
+  
+  
+  <!-- Mapeado para ConsultarTodos.jsp -->
+	<servlet>
+		<servlet-name>ConsultarTodos</servlet-name>
+		<jsp-file>/pages/ConsultarTodos.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ConsultarTodos</servlet-name>
+		<url-pattern>/list-all</url-pattern>
+	</servlet-mapping>
+
+	
+
 </web-app>
