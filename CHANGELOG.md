@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/javiluli/java-web-dinamica-clientes/compare/v1.1.0...v1.1.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* solucion de erorres con los commitlint y el comando `npm run release` ([1a7f880](https://github.com/javiluli/java-web-dinamica-clientes/commit/1a7f880723486db5a24c0e88b1ffc4b146123149))
+
 ## [1.1.0](https://github.com/javiluli/java-web-dinamica-clientes/compare/v1.0.0...v1.1.0) (2022-02-11)
 
 

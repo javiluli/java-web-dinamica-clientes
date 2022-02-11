@@ -1,6 +1,6 @@
 {
   "name": "java-web-dinamica-clientes",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Web dinamica con Java, Servlets y JSP",
   "main": "index.jsp",
   "scripts": {
