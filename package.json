@@ -1,6 +1,6 @@
 {
   "name": "java-web-dinamica-clientes",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Web dinamica con Java, Servlets y JSP",
   "main": "index.jsp",
   "scripts": {
@@ -11,6 +11,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "standard-version": "^9.3.2"
   }
 }
